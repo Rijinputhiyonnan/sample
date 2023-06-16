@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Page</title>
+  <style>
+    /* Add your CSS styles here */
+    body {
+      font-family: Arial, sans-serif;
+    }
+    h1, h2 {
+      color: #333;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    th, td {
+      text-align: left;
+      padding: 8px;
+    }
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+    a {
+        display: inline-block;
+        padding: 10px 15px;
+        margin: 5px;
+        text-decoration: none;
+        color: white;
+        background-color: #4CAF50;
+        border-radius: 5px;
+      }
+      a:hover {
+        background-color: #3e8e41;
+      }
+  </style>
+<!-- templates/teachertable.html -->
+<h1>Welcome, {{ teacher.user.first_name }}!</h1>
+<a href="{% url 'student_list2' %}">Student List</a>
+<h2>Your Details</h2>
+
+<table>
+    <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Age</th>
+        <th>Address</th>
+        <th>Gender</th>
+        <th>Phone</th>
+        <th>Photo</th>
+        <th>Course</th>
+        <th></th>
+    </tr>
+    <tr>
+        <td>{{ teacher.user.first_name }}</td>
+        <td>{{ teacher.user.last_name }}</td>
+        <td>{{ teacher.user.email }}</td>
+        <td>{{ teacher.age }}</td>
+        <td>{{ teacher.address }}</td>
+        <td>{{ teacher.gender }}</td>
+        <td>{{ teacher.phone }}</td>
+        <td><img src="{{ teacher.photo.url }}" alt="Teacher photo" width="100"></td>
+        <td>{{ teacher.course_name.course_name }}</td>
+        <!-- Add an edit link for the currently logged-in teacher -->
+        <td><a href="{% url 'edit_teacher' teacher.id %}">✎</a></td>
+    </tr>
+</table>
+
+<!-- Add a sign-out link -->
+<a href="{% url 'signout' %}">Sign Out</a><br><br>
+

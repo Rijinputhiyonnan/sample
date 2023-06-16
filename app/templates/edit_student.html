@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Page</title>
+  <style>
+    /* Add your CSS styles here */
+    body {
+      font-family: Arial, sans-serif;
+    }
+    h1, h2 {
+      color: #333;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    th, td {
+      text-align: left;
+      padding: 8px;
+    }
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+    a {
+        display: inline-block;
+        padding: 10px 15px;
+        margin: 5px;
+        text-decoration: none;
+        color: white;
+        background-color: #4CAF50;
+        border-radius: 5px;
+      }
+      a:hover {
+        background-color: #3e8e41;
+      }
+  </style>
+<h1>Edit Student</h1>
+<form method="post">
+  {% csrf_token %}
+  <label for="fname">First name:</label><br>
+  <input type="text" id="fname" name="fname" value="{{ student.fname }}"><br>
+  <label for="lname">Last name:</label><br>
+  <input type="text" id="lname" name="lname" value="{{ student.lname }}"><br>
+  <label for="age">Age:</label><br>
+  <input type="number" id="age" name="age" value="{{ student.age }}"><br>
+  <label for="address">Address:</label><br>
+  <input type="text" id="address" name="address" value="{{ student.address }}"><br>
+  <label for="gender">Gender:</label><br>
+  <select id="gender" name="gender">
+    <option value="">--Please choose an option--</option>
+    <option value="Male"{% if student.gender == 'Male' %} selected{% endif %}>Male</option>
+    <option value="Female"{% if student.gender == 'Female' %} selected{% endif %}>Female</option>
+    <option value="Other"{% if student.gender == 'Other' %} selected{% endif %}>Other</option>
+  </select><br>
+  <label for="course_name">Course:</label>
+  <select name="course_name" id="course_name">
+    <option value="" disabled selected>Select a course</option>
+    {% for course in courses %}
+      <option value="{{ course.pk }}">{{ course.course_name.course_name }}</option>
+    {% endfor %}
+  </select><br>
+  
+  <input type="submit" value="Save Changes">
+</form>

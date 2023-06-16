@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Page</title>
+  <style>
+    /* Add your CSS styles here */
+    body {
+      font-family: Arial, sans-serif;
+    }
+    h1, h2 {
+      color: #333;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    th, td {
+      text-align: left;
+      padding: 8px;
+    }
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+    a {
+        display: inline-block;
+        padding: 10px 15px;
+        margin: 5px;
+        text-decoration: none;
+        color: white;
+        background-color: #4CAF50;
+        border-radius: 5px;
+      }
+      a:hover {
+        background-color: #3e8e41;
+      }
+  </style>
+
+<h1>Welcome, {{ user.username }}!</h1>
+
+<!-- Add a sign-out link -->
+<a href="{% url 'signout' %}">Sign Out</a>
+<a href="{% url 'addcourse' %}">Add Course</a>
+<a href="{% url 'add_student' %}">Add Student</a>
+<a href="{% url 'student_list' %}">Student List</a>
+<a href="{% url 'coursetable' %}">Course List</a>
+<h2>Teachers</h2>
+<table>
+ <tr>
+ <th>First Name</th>
+ <th>Last Name</th>
+ <th>Email</th>
+ <th>Age</th>
+ <th>Address</th>
+ <th>Gender</th>
+ <th>Phone</th>
+ <th>Course</th>
+ <th>Photo</th>
+ <th></th>
+ </tr>
+ {% for teacher in teachers %}
+ <tr>
+ <td>{{ teacher.user.first_name }}</td>
+ <td>{{ teacher.user.last_name }}</td>
+ <td>{{ teacher.user.email }}</td>
+ <td>{{ teacher.age }}</td>
+ <td>{{ teacher.address }}</td>
+ <td>{{ teacher.gender }}</td>
+ <td>{{ teacher.phone }}</td>
+ <td>{{ teacher.course_name.course_name }}</td>
+
+ <td><img src="{{ teacher.photo.url }}" alt="Photo" width="100"></td>
+ <td><a href="{% url 'delete_admin' teacher.id %}">❌</a></td>
+ </tr>
+ {% endfor %}
+</table>
+
+
+<table>
+ <tr>
+ 
+
+
+<!-- Add a sign-out link -->
+<a href="{% url 'signout' %}">Sign Out</a><br><br>
+
+
+

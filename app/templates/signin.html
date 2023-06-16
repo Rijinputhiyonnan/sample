@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Page</title>
+  <style>
+    /* Add your CSS styles here */
+    body {
+      font-family: Arial, sans-serif;
+    }
+    form {
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    label {
+      display: block;
+      margin-bottom: 10px;
+    }
+    input, select {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 5px;
+      margin-bottom: 20px;
+    }
+    input[type="submit"] {
+      background-color: #4CAF50;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    input[type="submit"]:hover {
+      background-color: #45a049;
+    }
+    h1 {
+      text-align: center;
+    }
+    
+  </style>
+  <title>Sign IN</title>
+</head>
+<body>
+  <h1>Sign In</h1>
+
+  
+  
+      
+  <form method="POST" action="{% url 'dosignin' %}">
+    {% csrf_token %}
+    <input type="text" id="id_username" name="username" placeholder="Username"><br>
+    <input type="password" id="id_password" name="password" placeholder="Password"><br>
+    <input type="submit" value="Sign In">
+</form>
+<p style="text-align: center;">Don't have an account? <a href="{% url 'signup' %}">Sign up</a></p>
+
+
+  
+  
+</body>
+</html>

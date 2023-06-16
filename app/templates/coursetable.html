@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+      </head>
+      
+  <title>My Page</title>
+  <style>
+    /* Add your CSS styles here */
+    body {
+      font-family: Arial, sans-serif;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    th, td {
+      text-align: left;
+      padding: 8px;
+    }
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+
+  </style>
+  <style>
+    /* Add your CSS styles here */
+    body {
+      font-family: Arial, sans-serif;
+    }
+    a {
+      display: inline-block;
+      padding: 10px 15px;
+      margin: 5px;
+      text-decoration: none;
+      color: white;
+      background-color: #4CAF50;
+      border-radius: 5px;
+    }
+    a:hover {
+      background-color: #3e8e41;
+    }
+  </style>
+</head>
+<body>
+    <h1> Course List</h1>
+
+<!-- Your table goes here -->
+<table>
+
+ <tr>
+ <th>Course Name</th>
+ <th>Actions</th>
+ </tr>
+ {% for course in courses %}
+ <tr>
+ <td>{{ course.course_name }}</td>
+
+ <td>
+ <form method="post" action="{% url 'delete_course' course.id %}">
+ {% csrf_token %}
+ <button type="submit">&#x1F5D1;</button>
+ </form>
+ </td>
+ </tr>
+ {% endfor %}
+</table>
+<a href="{% url 'addcourse' %}">Add Course</a>
+<a href="{% url 'signout' %}">Sign Out</a>
+</body>
+</html>

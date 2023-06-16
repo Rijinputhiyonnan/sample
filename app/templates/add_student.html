@@ -1,0 +1,73 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Page</title>
+  <style>
+    /* Add your CSS styles here */
+    body {
+      font-family: Arial, sans-serif;
+    }
+    form {
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    label {
+      display: block;
+      margin-bottom: 10px;
+    }
+    input, select {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 5px;
+      margin-bottom: 20px;
+    }
+    input[type="submit"] {
+      background-color: #4CAF50;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    input[type="submit"]:hover {
+      background-color: #45a049;
+    }
+    h1 {
+      text-align: center;
+    }
+    
+  </style>
+<h1>Add Student</h1>
+<form method="post">
+    {% csrf_token %}
+    <label for="fname">First name:</label><br>
+    <input type="text" id="fname" name="fname"><br>
+    <label for="lname">Last name:</label><br>
+    <input type="text" id="lname" name="lname"><br>
+    <label for="age">Age:</label><br>
+    <input type="number" id="age" name="age"><br>
+    <label for="address">Address:</label><br>
+    <input type="text" id="address" name="address"><br>
+    <label for="gender">Gender:</label><br>
+    <select id="gender" name="gender">
+      <option value="">--Please choose an option--</option>
+      <option value="Male">Male</option>
+      <option value="Female">Female</option>
+      <option value="Other">Other</option>
+    </select><br>
+    <label for="course_name">Course:</label>
+    <select name="course_name" id="course_name">
+      <option value="" disabled selected>Select a course</option>
+      {% for course in courses %}
+        <option value="{{ course.pk }}">{{ course.course_name }}</option>
+      {% endfor %}
+    </select><br>
+    
+  
+    <input type="submit" value="Submit">
+  </form>
+  
